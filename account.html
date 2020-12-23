@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NF Pawn</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="theme-color" content="#7952b3">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous">
+  </head>  
+  <body>
+    <header>
+      <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">
+            <img src="/logo.svg" width="16" height="16">
+            <span class="align-middle fw-bold">NF Pawn</span>
+          </a>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 bg-light">
+        <h1 class="display-4 fw-normal">Your buyback offers</h1>
+    <!-- TODO: THIS TABLE TO BE LOADED USING JQUERY FROM DATA AT api.nfpawn.io/buyback-offers/0x23948739847239847.json -->
+        <table class="table mt-4">
+          <tr class="bg-white">
+            <td><img class="animate__animated animate__flipInY" style="width:5em; opacity:0.4" src="https://storage.googleapis.com/ck-kitty-image/0x06012c8cf97bead5deae237070f9587f8e7a266d/198881.svg"></td>
+            <td class="align-middle">CryptoKitties #198881</td>
+            <td class="align-middle">Pay back <strong>0.18 WETH</strong></td>
+            <td class="align-middle"><strong>3 days, 3 hours left</strong>&hellip;<br><em class="text-muted">Then your collateral may be taken</em></td>
+            <!-- <td class="align-middle"><button class="btn btn-primary">Select</button></td> -->
+            <td class="align-middle">
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="0x2938479kitties-198881" checked>
+                <label class="form-check-label" for="0x2938479kitties-198881">Selected</label>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <div>
+          <btn class="btn btn-primary me-3">Buy Back</btn>Total: <strong>0.04 DAI</strong> + <strong>0.04 WETH</strong> + <strong>0.008 USDT</strong>
+        </div>
+      </div>
+
+      <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 bg-light">
+        <h1 class="display-4 fw-normal">Best offers</h1>
+        <p><em class="text-muted">
+          All offers are limited time offers made by independent brokers not endorsed or reviewed by NF Pawn.
+        </em></p>
+        <!-- Another approach that requires two clicks -->
+        <!--
+        <div class="input-group">
+          <div class="input-group-text col col-md-3">
+            Preferred value contract
+          </div>
+          <div class="col col-md-3">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>WETH</option>
+              <option value="0x2139871297239847347">XRP</option>
+              <option value="0x213987129aoenuth39847347">DAI</option>
+              <option value="0x2139871aeonuexon297239847347">USDT</option>
+            </select>
+          </div>
+        </div>
+        -->
+        <div class="d-flex align-items-center">
+            Preferred value contract:
+            <input type="radio" class="btn-check" name="valueContract" id="WETH" checked="checked">
+            <label class="btn mx-2 btn-outline-secondary" for="WETH">WETH</label>
+            <input type="radio" class="btn-check" name="valueContract" id="USDT">
+            <label class="btn mx-2 btn-outline-secondary" for="USDT">USDT</label>
+            <input type="radio" class="btn-check" name="valueContract" id="DAI">
+            <label class="btn mx-2 btn-outline-secondary" for="DAI">DAI</label>
+        </div>
+
+    <!-- TODO: THIS TABLE TO BE LOADED USING JQUERY FROM DATA AT api.nfpawn.io/offers/0x23948739847239847.json -->
+        <table class="table mt-4">
+          <tr>
+            <td><img style="width:5em" src="https://storage.googleapis.com/ck-kitty-image/0x06012c8cf97bead5deae237070f9587f8e7a266d/1981784.svg"></td>
+            <td class="align-middle">CryptoKitties #191783</td>
+            <td class="align-middle">Get <strong>0.17 WETH</strong> now</td>
+            <td title="APY 14.56%" class="align-middle">Buy back <strong>0.18 WETH</strong><br>In <strong>30 days</strong></td>
+            <!-- <td class="align-middle"><button class="btn btn-primary">Select</button></td> -->
+            <td class="align-middle">
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="0x2938479kitties-1981784">
+                <label class="form-check-label" for="0x2938479kitties-1981784">Selected</label>
+              </div>
+            </td>
+          </tr>
+          <tr class="bg-white">
+            <td><img class="animate__animated animate__flipInY" style="width:5em; opacity:0.4" src="https://storage.googleapis.com/ck-kitty-image/0x06012c8cf97bead5deae237070f9587f8e7a266d/1981.svg"></td>
+            <td class="align-middle">CryptoKitties #1981</td>
+            <td class="align-middle">Get <strong>0.17 WETH</strong> now</td>
+            <td title="APY 14.56%" class="align-middle">Buy back <strong>0.18 WETH</strong><br>In <strong>30 days</strong></td>
+            <!-- <td class="align-middle"><button class="btn btn-primary">Select</button></td> -->
+            <td class="align-middle">
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="0x2938479kitties-1981" checked>
+                <label class="form-check-label" for="0x2938479kitties-1981">Selected</label>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><img style="width:5em" src="https://storage.googleapis.com/ck-kitty-image/0x06012c8cf97bead5deae237070f9587f8e7a266d/19.svg"></td>
+            <td class="align-middle">CryptoKitties #19</td>
+            <td class="align-middle">Get <strong>0.17 DAI</strong> now<br><em class="text-muted">No WETH offers available</em></td>
+            <td title="APY 14.56%" class="align-middle">Buy back <strong>0.18 DAI</strong><br>In <strong>30 days</strong></td>
+            <!-- <td class="align-middle"><button class="btn btn-primary">Select</button></td> -->
+            <td class="align-middle">
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="0x2938479kitties-19">
+                <label class="form-check-label" for="0x2938479kitties-19">Selected</label>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <div>
+          <btn class="btn btn-primary me-3">Sell</btn>Total: <strong>0.04 DAI</strong> + <strong>0.04 WETH</strong> + <strong>0.008 USDT</strong>
+        </div>
+      </div>
+
+      <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 bg-light">
+        <h1 class="display-4 fw-normal">Be a broker</h1>
+        <p><em class="text-muted">
+          By executing an offer file, you affirm that you are a licensed and bonded pawnbroker or equivalent in your jurisdiction.
+        </em></p>
+        <div class="input-group">
+          <div class="input-group-text col col-md-3">
+            Make offers for:
+          </div>
+          <div class="col col-md-3">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>CryptoKitties</option>
+              <option value="0x2139871297239847347">Su Squares</option>
+              <option value="0x213987129aoenuth39847347">CryptoVoxels</option>
+              <option value="0x2139871aeonuexon297239847347">...</option>
+            </select>
+          </div>
+        </div>
+        <div class="input-group my-3">
+          <div class="input-group-text col col-md-3">
+            With value contract:
+          </div>
+          <div class="col col-md-3">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>WETH</option>
+              <option value="0x2139871297239847347">DAI</option>
+              <option value="0x213987129aoenuth39847347">USDT</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-spreadsheet" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M5 10H3V9h10v1h-3v2h3v1h-3v2H9v-2H6v2H5v-2H3v-1h2v-2zm1 0v2h3v-2H6z"/>
+          <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
+          <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z"/>
+        </svg> Download Offer Template</button><!-- this downloads api.nfpawn.io/offer-lists/template.csv?currency=0x23987ERC20000WETH&asset=0x2389CRYPTOKITTIES3298 -->
+        <button class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-spreadsheet" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M5 10H3V9h10v1h-3v2h3v1h-3v2H9v-2H6v2H5v-2H3v-1h2v-2zm1 0v2h3v-2H6z"/>
+          <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
+          <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z"/>
+        </svg> Execute Offer File</button> <!-- this POSTS to api.nfpawn.io/offer-lists -->
+
+        <p class="my-4">Get notified when your offers are executed:</span>
+          <a class="align-middle btn btn-outline-secondary" href="api.nfpawn.io/executions/0x23948739847239847.rss">RSS</a>
+          <a class="align-middle btn btn-outline-secondary" href="api.nfpawn.io/executions/0x23948739847239847.email">Get Email Updates</a>
+        </p>
+        <p class="text-muted">
+          If you need to cancel an offer file you executed, just revoke your authorization on the value contract. Also we have a way for you to make your offers inactionable, but its not on this page yet, contact us.
+        </p>
+      </div>
+
+      <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 bg-light">
+        <h1 class="display-4 fw-normal">Your collateral</h1>
+        <table class="table mt-4">
+          <tr class="bg-white">
+            <td><img class="animate__animated animate__flipInY" style="width:5em; opacity:0.4" src="https://storage.googleapis.com/ck-kitty-image/0x06012c8cf97bead5deae237070f9587f8e7a266d/39487.svg"></td>
+            <td class="align-middle">CryptoKitties #39487</td>
+            <td class="align-middle">Waiting for <strong>0.18 WETH</strong></td>
+            <td class="align-middle"><strong>3 days, 3 hours left</strong>&hellip;<br><em class="text-muted">Then you can take it</em></td>
+            <!-- <td class="align-middle"><button class="btn btn-primary">Select</button></td> -->
+            <td class="align-middle">
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="0x2938479kitties-198881" disabled>
+                <label class="form-check-label" for="0x2938479kitties-198881">Selected</label>
+              </div>
+            </td>
+          </tr>
+          <tr class="bg-white">
+            <td><img class="animate__animated animate__flipInY" style="width:5em; opacity:0.4" src="https://storage.googleapis.com/ck-kitty-image/0x06012c8cf97bead5deae237070f9587f8e7a266d/487495.svg"></td>
+            <td class="align-middle">CryptoKitties #487495</td>
+            <td class="align-middle">Waiting for <strong>0.18 WETH</strong></td>
+            <td class="align-middle"><strong>Overdue</strong>&hellip;</td>
+            <!-- <td class="align-middle"><button class="btn btn-primary">Select</button></td> -->
+            <td class="align-middle">
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="0x2938479kitties-198881" checked>
+                <label class="form-check-label" for="0x2938479kitties-198881">Selected</label>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <div>
+          <btn class="btn btn-primary me-3">Take Collateral</btn> <em class="text-muted">This takes the selected assets and revokes the buyback offer</em>
+        </div>
+      </div>
+
+    </main>
+    <footer class="container py-5">
+      <div class="d-flex align-items-center justify-content-between">
+        <div>
+          <span class="align-middle">Copyright 2020</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up align-middle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+          </svg>
+          <span class="align-middle fw-bold">NF Pawn</span>
+        </div>
+        <div class="ml-auto">
+          <a href="https://docs.nfpawn.io">How it works</a>
+        </div>
+      </div>
+    </footer>
+    <script>
+      //TODO: make popovers work for everything with title=...
+    </script>
+  </body>
+</html>
