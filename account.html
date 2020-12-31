@@ -25,8 +25,8 @@
           </a>
           <div class="align-middle">
             <span>Offers for account 0x2349873493749837</span>
-            <a class="align-middle btn btn-outline-secondary" href="https://api.nfpawn.io/offers/0x2349873493749837.rss">RSS</a>
-            <a class="align-middle btn btn-outline-secondary" href="https://api.nfpawn.io/offers/0x2349873493749837.email">Get Updates by Email</a>
+            <a class="align-middle btn btn-outline-secondary" href="https://api.nfpawn.io/accounts/0x2349873493749837/feed.rss">RSS</a>
+            <a class="align-middle btn btn-outline-secondary" href="https://api.nfpawn.io/accounts/0x2349873493749837/email">Get Updates by Email</a>
           </div>
         </div>
       </nav>
@@ -34,7 +34,7 @@
     <main>
       <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 bg-light">
         <h1 class="display-4 fw-normal">Your buyback offers</h1>
-    <!-- TODO: THIS TABLE TO BE LOADED USING JQUERY FROM DATA AT api.nfpawn.io/buyback-offers/0x23948739847239847.json -->
+    <!-- TODO: THIS TABLE TO BE LOADED USING JQUERY FROM DATA AT api.nfpawn.io/accounts/0x23948739847239847/buyback-offers -->
         <table class="table mt-4">
           <tr class="bg-white">
             <td><img class="animate__animated animate__flipInY" style="width:5em; opacity:0.4" src="https://storage.googleapis.com/ck-kitty-image/0x06012c8cf97bead5deae237070f9587f8e7a266d/198881.svg"></td>
@@ -86,7 +86,7 @@
             <label class="btn mx-2 btn-outline-secondary" for="DAI">DAI</label>
         </div>
 
-    <!-- TODO: THIS TABLE TO BE LOADED USING JQUERY FROM DATA AT api.nfpawn.io/offers/0x23948739847239847.json -->
+    <!-- TODO: THIS TABLE TO BE LOADED USING JQUERY FROM DATA AT api.nfpawn.io/accounts/0x23948739847239847/sale-buyback-offers -->
         <table class="table mt-4">
           <tr>
             <td><img style="width:5em" src="https://storage.googleapis.com/ck-kitty-image/0x06012c8cf97bead5deae237070f9587f8e7a266d/1981784.svg"></td>
@@ -167,7 +167,7 @@
           <path fill-rule="evenodd" d="M5 10H3V9h10v1h-3v2h3v1h-3v2H9v-2H6v2H5v-2H3v-1h2v-2zm1 0v2h3v-2H6z"/>
           <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
           <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z"/>
-        </svg> Download Offer Template</button><!-- this downloads api.nfpawn.io/offer-lists/template.csv?currency=0x23987ERC20000WETH&asset=0x2389CRYPTOKITTIES3298 -->
+        </svg> Download Offer Template</button><!-- this downloads api.nfpawn.io/offer-lists/template.csv?saleContract=0x23987ERC20000WETH&nftContract=0x2389CRYPTOKITTIES3298 -->
         <button class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-spreadsheet" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M5 10H3V9h10v1h-3v2h3v1h-3v2H9v-2H6v2H5v-2H3v-1h2v-2zm1 0v2h3v-2H6z"/>
           <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
@@ -175,8 +175,8 @@
         </svg> Execute Offer File</button> <!-- this POSTS to api.nfpawn.io/offer-lists -->
 
         <p class="my-4">Get notified when your offers are executed:</span>
-          <a class="align-middle btn btn-outline-secondary" href="api.nfpawn.io/executions/0x23948739847239847.rss">RSS</a>
-          <a class="align-middle btn btn-outline-secondary" href="api.nfpawn.io/executions/0x23948739847239847.email">Get Email Updates</a>
+          <a class="align-middle btn btn-outline-secondary" href="api.nfpawn.io/accounts/0x23948739847239847/feed.rss">RSS</a>
+          <a class="align-middle btn btn-outline-secondary" href="api.nfpawn.io/accounts/0x23948739847239847/email">Get Email Updates</a>
         </p>
         <p class="text-muted">
           If you need to cancel an offer file you executed, just revoke your authorization on the value contract. Also we have a way for you to make your offers inactionable, but its not on this page yet, contact us.
