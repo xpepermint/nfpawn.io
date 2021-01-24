@@ -23,13 +23,18 @@
             <img src="/logo.svg" width="16" height="16">
             <span class="align-middle fw-bold">NF Pawn</span>
           </a>
+          <div class="align-middle">
+            <span>Offers for account 0x2349873493749837</span>
+            <a class="align-middle btn btn-outline-secondary" href="https://api.nfpawn.io/accounts/0x2349873493749837/feed.rss">RSS</a>
+            <a class="align-middle btn btn-outline-secondary" href="https://api.nfpawn.io/accounts/0x2349873493749837/email">Get Updates by Email</a>
+          </div>
         </div>
       </nav>
     </header>
     <main>
       <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 bg-light">
         <h1 class="display-4 fw-normal">Your buyback offers</h1>
-    <!-- TODO: THIS TABLE TO BE LOADED USING JQUERY FROM DATA AT api.nfpawn.io/buyback-offers/0x23948739847239847.json -->
+    <!-- TODO: THIS TABLE TO BE LOADED USING JQUERY FROM DATA AT api.nfpawn.io/accounts/0x23948739847239847/buyback-offers -->
         <table class="table mt-4">
           <tr class="bg-white">
             <td><img class="animate__animated animate__flipInY" style="width:5em; opacity:0.4" src="https://storage.googleapis.com/ck-kitty-image/0x06012c8cf97bead5deae237070f9587f8e7a266d/198881.svg"></td>
@@ -81,7 +86,7 @@
             <label class="btn mx-2 btn-outline-secondary" for="DAI">DAI</label>
         </div>
 
-    <!-- TODO: THIS TABLE TO BE LOADED USING JQUERY FROM DATA AT api.nfpawn.io/offers/0x23948739847239847.json -->
+    <!-- TODO: THIS TABLE TO BE LOADED USING JQUERY FROM DATA AT api.nfpawn.io/accounts/0x23948739847239847/sale-buyback-offers -->
         <table class="table mt-4">
           <tr>
             <td><img style="width:5em" src="https://storage.googleapis.com/ck-kitty-image/0x06012c8cf97bead5deae237070f9587f8e7a266d/1981784.svg"></td>
@@ -173,8 +178,8 @@
         </svg> Execute Offer File</button> <!-- this POSTS to api.nfpawn.io/offer-lists -->
 
         <p class="my-4">Get notified when your offers are executed:</span>
-          <a class="align-middle btn btn-outline-secondary" href="api.nfpawn.io/executions/0x23948739847239847.rss">RSS</a>
-          <a class="align-middle btn btn-outline-secondary" href="api.nfpawn.io/executions/0x23948739847239847.email">Get Email Updates</a>
+          <a class="align-middle btn btn-outline-secondary" href="api.nfpawn.io/accounts/0x23948739847239847/feed.rss">RSS</a>
+          <a class="align-middle btn btn-outline-secondary" href="api.nfpawn.io/accounts/0x23948739847239847/email">Get Email Updates</a>
         </p>
         <p class="text-muted">
           If you need to cancel an offer file you executed, just revoke your authorization on the value contract. Also we have a way for you to make your offers inactionable, but its not on this page yet, contact us.
