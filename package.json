@@ -1,0 +1,24 @@
+{
+  "name": "nfpawn.io",
+  "version": "1.0.0",
+  "description": "This is straight HTML.",
+  "main": "index.js",
+  "dependencies": {
+    "ethereumjs-util": "^7.0.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "browserify": "browserify scripts/merkle.js -o scripts/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MoMannn/nfpawn.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MoMannn/nfpawn.io/issues"
+  },
+  "homepage": "https://github.com/MoMannn/nfpawn.io#readme"
+}

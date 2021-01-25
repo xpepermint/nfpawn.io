@@ -96,13 +96,13 @@ window.p.generateAssetClaim = function (asset) {
             Web3.utils.toHex(`${p.NAMESPACE}.sellWithBuybackOffer|`).substr(2),
             asset.offeror.substr(2),
             asset.nftContract.substr(2),
-            Web3.utils.leftPad(asset.nftId.toHexString(), 64, '0', false).substr(2),
-            Web3.utils.leftPad(asset.saleExpiration, 64, '0', false).substr(2),
+            Web3.utils.leftPad(asset.nftId.toHexString(), 64).substr(2),
+            Web3.utils.leftPad(asset.saleExpiration, 64).substr(2),
             asset.saleContract.substr(2),
-            Web3.utils.leftPad(asset.saleAmount.toHexString(), 64, '0', false).substr(2),
-            Web3.utils.leftPad(asset.termUntilCollateralAtRisk, 64, '0', false).substr(2),
+            Web3.utils.leftPad(asset.saleAmount.toHexString(), 64).substr(2),
+            Web3.utils.leftPad(asset.termUntilCollateralAtRisk, 64).substr(2),
             asset.buybackContract.substr(2),
-            Web3.utils.leftPad(asset.buybackAmount.toHexString(), 64, '0', false).substr(2),
+            Web3.utils.leftPad(asset.buybackAmount.toHexString(), 64).substr(2),
         ].join('')),
     );
 }
@@ -115,11 +115,10 @@ window.p.buildMerkleTree = function(claims) {
     console.log(elements);
 
     const tree = new p.MerkleTree(elements);
-    // const proofs = tree.getHexProof(elements[0]);
-    // console.log(proofs);
-    // const proofs = merkleTree.getHexProof(elements[0]);
-    // console.log('proofs:', proofs);
-    // const root = merkleTree.getHexRoot();
+    const proofs = tree.getHexProof(elements[0]);
+    console.log('proofs:', proofs);
+    const root = tree.getHexRoot();
+    console.log(root);
     // const rootContract = await testContract.instance.methods.merkleProof(
     //   '0x44e44897FC076Bc46AaE6b06b917D0dfD8B2dae9',
     //   '0x44e44897FC076Bc46AaE6b06b917D0dfD8B2dae9',
