@@ -107,100 +107,71 @@ window.p.generateAssetClaim = function (asset) {
     );
 }
 
-window.p.buildMerkleTree = function(claims) {
+/**
+ * Applyes merkle tree keys to each received item.
+ * @param {Array} items List of items in format `{claim, asset}`.
+ */
+window.p.assignMerkleData = function(items) {
+    const claims = items.map((i) => i.claim);
     const elements = claims.map((c) => {
         return buffer.Buffer.from(c.substr(2), 'hex');
     });
 
-    console.log(elements);
-
     const tree = new p.MerkleTree(elements);
-    const proofs = tree.getHexProof(elements[0]);
-    console.log('proofs:', proofs);
     const root = tree.getHexRoot();
-    console.log(root);
-    // const rootContract = await testContract.instance.methods.merkleProof(
-    //   '0x44e44897FC076Bc46AaE6b06b917D0dfD8B2dae9',
-    //   '0x44e44897FC076Bc46AaE6b06b917D0dfD8B2dae9',
-    //   1,
-    //   1,
-    //   '0x44e44897FC076Bc46AaE6b06b917D0dfD8B2dae9',
-    //   1,
-    //   1,
-    //   '0x44e44897FC076Bc46AaE6b06b917D0dfD8B2dae9',
-    //   2,
-    //   proofs
-    // ).call();
 
+    items.forEach((item, i) => { // add to item
+        item.root = root;
+        item.proofs = tree.getHexProof(elements[i]);
+    });
 }
 
+/**
+ * Builds NFT offer records from a CSV data.
+ * @param {Array} csv List of CSV data.
+ */
+window.p.buildOffers = function(csv) {
+    const items = [];
 
-// BROKER-FILE 
-// $('#broker-file').on('change', async (e) => {
-//     const file = e.target.files[0];
-//     if (file.type != 'text/csv') {
-//         throw new Error(p.ERROR['00000001']);
-//     }
+    for (const arr of csv) {
+        const asset = p.parseArrayToAsset(arr);
+        const claim = p.generateAssetClaim(asset);
+        items.push({ asset, claim });
+    }
+    p.assignMerkleData(items);
 
-//     const txt = await p.readFileToString(file);
-//     if (!txt) {
-//         throw new Error(p.ERROR['00000002']);
-//     }
+    return items;
+}
 
-//     const csv = p.parseStringToCsv(txt);
-//     if (csv instanceof Error) {
-//         console.error(csv);
-//         throw new Error(p.ERROR['00000003']);
-//     }
+/**
+ * Processes and uploads the offer file.
+ * @param {File} file Reference to the CSV file.
+ */
+window.p.executeOfferFile = async function(file) {
+    if (file.type != 'text/csv') {
+        throw new Error(p.ERROR['00000001']);
+    }
 
-//     for (const arr of csv) {
-//         const asset = p.parseArrayToAsset(arr);
-//         const claim = p.generateAssetClaim(asset);
-//         console.log("ASSET:", claim, asset.nftId);
-//     }
-// });
+    const txt = await p.readFileToString(file);
+    if (!txt) {
+        throw new Error(p.ERROR['00000002']);
+    }
 
+    const csv = p.parseStringToCsv(txt);
+    if (csv instanceof Error) {
+        console.error(csv);
+        throw new Error(p.ERROR['00000003']);
+    }
 
-// TEST MERKLE
-const claim1 = p.generateAssetClaim(
-    p.parseArrayToAsset([
-        '0x44e44897FC076Bc46AaE6b06b917D0dfD8B2dae9',
-        '0x44e44897FC076Bc46AaE6b06b917D0dfD8B2dae9',
-        1,
-        1,
-        '0x44e44897FC076Bc46AaE6b06b917D0dfD8B2dae9',
-        1,
-        1,
-        '0x44e44897FC076Bc46AaE6b06b917D0dfD8B2dae9',
-        2
-    ])
-);
-const claim2 = p.generateAssetClaim(
-    p.parseArrayToAsset([
-        '0x44e44897FC076Bc46AaE6b06b917D0dfD8B2dae9',
-        '0x44e44897FC076Bc46AaE6b06b917D0dfD8B2dae9',
-        2,
-        1,
-        '0x44e44897FC076Bc46AaE6b06b917D0dfD8B2dae9',
-        1,
-        1,
-        '0x44e44897FC076Bc46AaE6b06b917D0dfD8B2dae9',
-        2
-    ])
-); 
-const claim3 = p.generateAssetClaim(
-    p.parseArrayToAsset([
-        '0x44e44897FC076Bc46AaE6b06b917D0dfD8B2dae9',
-        '0x44e44897FC076Bc46AaE6b06b917D0dfD8B2dae9',
-        3,
-        1,
-        '0x44e44897FC076Bc46AaE6b06b917D0dfD8B2dae9',
-        1,
-        1,
-        '0x44e44897FC076Bc46AaE6b06b917D0dfD8B2dae9',
-        2
-    ])
-);
+    const items = p.buildOffers(csv);
+    console.log("ITEMS:", JSON.stringify(items, null, 2));
+}
 
-const claims = [claim1, claim2, claim3];
-const merkleTree = p.buildMerkleTree(claims);
+/**
+ * Installs the event on the FILE input which builds the items
+ * @param {Array} csv List of CSV data.
+ */
+$('#broker-exec').on('click', async (e) => {
+    const file = $('#broker-file').get(0).files[0];
+    p.executeOfferFile(file);
+});
