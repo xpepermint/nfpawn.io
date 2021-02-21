@@ -108,11 +108,34 @@ window.p.generateAssetClaim = function (asset) {
 }
 
 /**
- * Applyes merkle tree keys to each received item.
- * @param {Array} items List of items in format `{claim, asset}`.
+ * Signs a root hash of the order's merkle tree.
+ * 
+ * @param hash Order's merkle tree root.
  */
-window.p.assignMerkleData = function(items) {
-    const claims = items.map((i) => i.claim);
+async function signOrder(merkleRoot) {
+    const web3 = new Web3(window.ethereum);
+    await window.ethereum.enable();
+    const account = (await web3.eth.getAccounts())[0];
+    const seed = Web3.utils.leftPad(new Date().getTime(), 64).substr(2);
+    const claim = `0x${Web3.utils.toHex(`${window.NAMESPACE}.order`).substr(2)}${merkleRoot}${seed}`;
+    const data = web3.utils.sha3(claim);
+    const signature = await web3.eth.sign(data, account);
+    return {
+        account,
+        seed,
+        claim,
+        data,
+        signature,
+        signatureKind: 0,
+    };
+}
+
+/**
+ * Applyes merkle tree keys to each received item.
+ * @param {Array} offers List of offers.
+ */
+window.p.assignMerkleData = async function(offers) {
+    const claims = offers.map((i) => i.claim);
     const elements = claims.map((c) => {
         return buffer.Buffer.from(c.substr(2), 'hex');
     });
@@ -120,9 +143,12 @@ window.p.assignMerkleData = function(items) {
     const tree = new p.MerkleTree(elements);
     const root = tree.getHexRoot();
 
-    items.forEach((item, i) => { // add to item
-        item.root = root;
-        item.proofs = tree.getHexProof(elements[i]);
+    const { signature } = await signOrder(root);
+
+    offers.forEach((o, i) => { // add to item
+        o.merkleRoot = root;
+        o.merkleProofs = tree.getHexProof(elements[i]);
+        o.signature = signature;
     });
 }
 
@@ -130,24 +156,30 @@ window.p.assignMerkleData = function(items) {
  * Builds NFT offer records from a CSV data.
  * @param {Array} csv List of CSV data.
  */
-window.p.buildOffers = function(csv) {
-    const items = [];
+window.p.buildOffers = async function(csv) {
+    const offers = [];
 
     for (const arr of csv) {
         const asset = p.parseArrayToAsset(arr);
         const claim = p.generateAssetClaim(asset);
-        items.push({ asset, claim });
-    }
-    p.assignMerkleData(items);
 
-    return items;
+        let offer = { ...asset, claim };
+        offer.nftId = offer.nftId.toHexString();
+        offer.saleAmount = offer.saleAmount.toHexString();
+        offer.buybackAmount = offer.buybackAmount.toHexString();
+
+        offers.push(offer);
+    }
+    await p.assignMerkleData(offers);
+
+    return offers;
 }
 
 /**
  * Processes and uploads the offer file.
  * @param {File} file Reference to the CSV file.
  */
-window.p.executeOfferFile = async function(file) {
+window.p.createFileOffers = async function(file) {
     if (file.type != 'text/csv') {
         throw new Error(p.ERROR['00000001']);
     }
@@ -163,8 +195,21 @@ window.p.executeOfferFile = async function(file) {
         throw new Error(p.ERROR['00000003']);
     }
 
-    const items = p.buildOffers(csv);
-    console.log("ITEMS:", JSON.stringify(items, null, 2));
+    const offers = await p.buildOffers(csv);
+    let res = await fetch(`${window.API_BASE}/offers/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(offers)
+    }).then((res) => {
+      return res.json();
+    }).catch((error) => {
+      console.error(error);
+      return { error: error.message };
+    });
+
+    console.log("RES:", res);
 }
 
 /**
@@ -173,5 +218,5 @@ window.p.executeOfferFile = async function(file) {
  */
 $('#broker-exec').on('click', async (e) => {
     const file = $('#broker-file').get(0).files[0];
-    p.executeOfferFile(file);
+    await p.createFileOffers(file);
 });
